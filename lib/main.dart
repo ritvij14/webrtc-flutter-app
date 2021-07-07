@@ -173,64 +173,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return stream;
   }
 
-  SizedBox videoRenderers() => SizedBox(
-      height: 210,
-      child: Row(children: [
-        Flexible(
-          child: new Container(
-              key: new Key("local"),
-              margin: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-              decoration: new BoxDecoration(color: Colors.black),
-              child: new RTCVideoView(_localRenderer)),
-        ),
-        Flexible(
-          child: new Container(
-              key: new Key("remote"),
-              margin: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-              decoration: new BoxDecoration(color: Colors.black),
-              child: new RTCVideoView(_remoteRenderer)),
-        )
-      ]));
-
-  Row offerAndAnswerButtons() =>
-      Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <Widget>[
-        new ElevatedButton(
-          onPressed: _createOffer,
-          child: Text('Create Offer'),
-        ),
-        ElevatedButton(
-          onPressed: _createAnswer,
-          child: Text('Create Answer'),
-        ),
-      ]);
-
-  Row sdpCandidateButtons() =>
-      Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <Widget>[
-        ElevatedButton(
-          onPressed: _setRemoteDescription,
-          child: Text('Set Remote Desc'),
-        ),
-        ElevatedButton(
-          onPressed: _addCandidate,
-          child: Text('Add Candidate'),
-        )
-      ]);
-
-  Padding sdpCandidatesTF() => Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: TextField(
-          controller: sdpController,
-          keyboardType: TextInputType.multiline,
-          maxLines: 4,
-          maxLength: TextField.noMaxLength,
-        ),
-      );
-
-  Padding candidateTV() => Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SelectableText(candidateString),
-      );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -241,11 +183,61 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Container(
                 child: Column(
           children: [
-            videoRenderers(),
-            offerAndAnswerButtons(),
-            sdpCandidatesTF(),
-            sdpCandidateButtons(),
-            candidateTV()
+            SizedBox(
+                height: 210,
+                child: Row(children: [
+                  Flexible(
+                    child: new Container(
+                        key: new Key("local"),
+                        margin: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+                        decoration: new BoxDecoration(color: Colors.black),
+                        child: new RTCVideoView(_localRenderer)),
+                  ),
+                  Flexible(
+                    child: new Container(
+                        key: new Key("remote"),
+                        margin: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+                        decoration: new BoxDecoration(color: Colors.black),
+                        child: new RTCVideoView(_remoteRenderer)),
+                  )
+                ])),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  new ElevatedButton(
+                    onPressed: _createOffer,
+                    child: Text('Create Offer'),
+                  ),
+                  ElevatedButton(
+                    onPressed: _createAnswer,
+                    child: Text('Create Answer'),
+                  ),
+                ]),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: sdpController,
+                keyboardType: TextInputType.multiline,
+                maxLines: 4,
+                maxLength: TextField.noMaxLength,
+              ),
+            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: _setRemoteDescription,
+                    child: Text('Set Remote Desc'),
+                  ),
+                  ElevatedButton(
+                    onPressed: _addCandidate,
+                    child: Text('Add Candidate'),
+                  )
+                ]),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SelectableText(candidateString),
+            )
           ],
         ))));
   }
