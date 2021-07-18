@@ -12,9 +12,9 @@ on:
       - 'ios/**'
       - 'test/**'
       - 'web/**'
-#  push:
-#    branches:
-#    - main
+  push:
+    branches:
+    - main
     
 # on: push    # Default will running for every branch.
     
