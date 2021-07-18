@@ -62,3 +62,6 @@ jobs:
       with:
         name: release-apk
         path: release-apk
+    
+    - name: Display structure of downloaded files
+      run: ls -R
