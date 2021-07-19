@@ -57,6 +57,7 @@ jobs:
       with:
           files: build/app/outputs/apk/release/app-release.apk
           prerelease: true
+          tag_name: dev
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
