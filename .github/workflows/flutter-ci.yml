@@ -55,7 +55,7 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-          files: Release.txt
+          files: build/app/outputs/apk/release/app-release.apk
           prerelease: true
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
