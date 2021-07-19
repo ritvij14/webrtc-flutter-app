@@ -66,12 +66,3 @@ jobs:
 #       with:
 #         name: release-apk
 #         path: build/app/outputs/apk/release/app-release.apk
-
-#     # Download generated artifact
-#     - uses: actions/download-artifact@v2
-#       with:
-#         name: release-apk
-#         path: release-apk
-    
-#     - name: Display structure of downloaded files
-#       run: ls -R
