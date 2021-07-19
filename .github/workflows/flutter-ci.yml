@@ -51,17 +51,26 @@ jobs:
     # Build apk.
     - run: flutter build apk
     
-    # Upload generated apk to the artifacts.
-    - uses: actions/upload-artifact@v1
+    # create release
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        name: release-apk
-        path: build/app/outputs/apk/release/app-release.apk
-
-    # Download generated artifact
-    - uses: actions/download-artifact@v2
-      with:
-        name: release-apk
-        path: release-apk
+          files: Release.txt
+          prerelease: true
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Display structure of downloaded files
-      run: ls -R
+    # Upload generated apk to the artifacts.
+#     - uses: actions/upload-artifact@v1
+#       with:
+#         name: release-apk
+#         path: build/app/outputs/apk/release/app-release.apk
+
+#     # Download generated artifact
+#     - uses: actions/download-artifact@v2
+#       with:
+#         name: release-apk
+#         path: release-apk
+    
+#     - name: Display structure of downloaded files
+#       run: ls -R
