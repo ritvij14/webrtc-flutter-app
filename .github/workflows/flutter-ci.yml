@@ -51,15 +51,12 @@ jobs:
     # Build apk.
     - run: flutter build apk
     
-    # Remove previous apk
-    - name: Remove asset
-      uses: flcdrg/remove-release-asset-action@v1.0.8
-      id: remove
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Delete old release assets
+      uses: mknejp/delete-release-assets@v1
       with:
-          release_id: ${{ steps.create-test-release.outputs.id }}
-          asset_name: app-release.apk
+        token: ${{ github.token }}
+        tag: dev # This may also be of the form 'refs/tags/staging'
+        assets: app-release.apk
     
     # create release
     - name: Release
